@@ -2,17 +2,16 @@ class Comment < ApplicationRecord
   # Direct associations
 
   belongs_to :photo,
-             :counter_cache => true
+             counter_cache: true
 
   belongs_to :commenter,
-             :class_name => "User"
+             class_name: "User"
 
   # Indirect associations
 
   # Validations
 
-  validates :body, :presence => true
+  validates :body, presence: true
 
   # Scopes
-
 end

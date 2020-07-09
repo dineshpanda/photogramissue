@@ -1,5 +1,5 @@
 class UserResource < ApplicationResource
-  secondary_endpoint '/current_user', [:show]
+  secondary_endpoint "/current_user", [:show]
   attribute :id, :integer, writable: false
   attribute :created_at, :datetime, writable: false
   attribute :updated_at, :datetime, writable: false
@@ -58,16 +58,15 @@ class UserResource < ApplicationResource
   many_to_many :commented_photos,
                resource: PhotoResource
 
-
   filter :sender_id, :integer do
     eq do |scope, value|
-      scope.eager_load(:followers).where(:friend_requests => {:sender_id => value})
+      scope.eager_load(:followers).where(friend_requests: { sender_id: value })
     end
   end
 
   filter :recipient_id, :integer do
     eq do |scope, value|
-      scope.eager_load(:following).where(:friend_requests => {:recipient_id => value})
+      scope.eager_load(:following).where(friend_requests: { recipient_id: value })
     end
   end
 end
