@@ -14,6 +14,10 @@ class Photo < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :commenters,
+             :through => :comments,
+             :source => :commenter
+
   # Validations
 
   validates :image, :presence => true

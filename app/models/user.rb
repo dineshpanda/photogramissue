@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :commented_photos,
+             :through => :comments,
+             :source => :photo
+
   # Validations
 
   validates :username, :uniqueness => true
